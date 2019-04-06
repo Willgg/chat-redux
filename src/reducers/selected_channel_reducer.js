@@ -3,7 +3,7 @@ const selectedChannelReducer = (state=null, action) => {
     case 'SET_SELECTED_CHANNEL':
       return action.payload;
     default:
-      return state;
+      return 'general';
   }
 }
 
