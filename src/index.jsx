@@ -13,9 +13,16 @@ import reducers from './reducers'
 
 const middlewares = applyMiddleware(reduxPromise, logger);
 
+const initialState = {
+  messages: [],
+  channels: ['general', 'react', 'paris'],
+  currentUser: prompt("What is your username?") || `anonymous${Math.floor(10 + (Math.random() * 90))}`,
+  selectedChannel: 'general'
+};
+
 // render an instance of the component in the DOM
 ReactDOM.render(
-  <Provider store={createStore(reducers, {}, middlewares)}>
+  <Provider store={createStore(reducers, initialState, middlewares)}>
     <App />
   </Provider>,
   document.getElementById('root')

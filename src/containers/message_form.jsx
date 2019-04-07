@@ -10,13 +10,13 @@ class MessageForm extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      value: event.target.value
-    });
+    this.setState({ value: event.target.value });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     this.props.createMessage(this.props.selectedChannel, this.props.currentUser, this.state.value);
+    this.setState({ value: '' });
   }
 
   render() {
@@ -30,7 +30,14 @@ class MessageForm extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createMessage: createMessage }, dispatch);
+  return bindActionCreators({ createMessage }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(MessageForm);
+function mapReduxStateToProps(reduxState) {
+  return {
+    currentUser: reduxState.currentUser,
+    selectedChannel: reduxState.selectedChannel
+  };
+}
+
+export default connect(mapReduxStateToProps, mapDispatchToProps)(MessageForm);

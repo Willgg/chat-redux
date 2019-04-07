@@ -4,4 +4,19 @@ body {
 .app {
   margin-top: 20px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.channels-container{
+  flex: 0 1 auto;
+  padding: 20px;
+  background: #efefef;
+}
+
+.channel-container{
+  flex: auto;
+  padding: 20px;
 }

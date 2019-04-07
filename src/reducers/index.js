@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import channelsReducer from './channels_reducer';
 import messagesReducer from './messages_reducer';
 import selectedChannelReducer from './selected_channel_reducer';
-import currentUserReducer from './current_user_reducer';
+
+const identityReducer = (state = null) => state;
 
 export default combineReducers({
-  channels: channelsReducer,
+  channels: identityReducer,
   messages: messagesReducer,
   selectedChannel: selectedChannelReducer,
-  currentUser: currentUserReducer
+  currentUser: identityReducer
 })
