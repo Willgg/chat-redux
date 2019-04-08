@@ -11,8 +11,6 @@ import App from './components/app';
 import '../assets/stylesheets/application.scss';
 import reducers from './reducers'
 
-const middlewares = applyMiddleware(reduxPromise, logger);
-
 const initialState = {
   messages: [],
   channels: ['general', 'react', 'paris'],
@@ -20,9 +18,12 @@ const initialState = {
   selectedChannel: 'general'
 };
 
+const middlewares = applyMiddleware(reduxPromise, logger);
+const store = createStore(reducers, initialState, middlewares);
+
 // render an instance of the component in the DOM
 ReactDOM.render(
-  <Provider store={createStore(reducers, initialState, middlewares)}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')

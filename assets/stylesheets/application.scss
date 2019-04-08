@@ -16,6 +16,17 @@ body {
   background: #efefef;
 }
 
+.channels-container ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.channels-container ul li{
+  cursor: pointer;
+  padding: 5px 0;
+}
+
 .channel-container{
   flex: auto;
   padding: 20px;

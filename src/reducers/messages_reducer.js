@@ -1,6 +1,6 @@
-import { FETCH_MESSAGES, CREATE_MESSAGE } from '../actions';
+import { FETCH_MESSAGES, CREATE_MESSAGE, CHANNEL_SELECTED } from '../actions';
 
-const messagesReducer = (state = null, action) => {
+export default function(state = null, action) {
   switch(action.type) {
     case FETCH_MESSAGES: {
       return action.payload.messages;
@@ -10,9 +10,10 @@ const messagesReducer = (state = null, action) => {
       copiedState.push(action.payload);
       return copiedState;
     }
+    case CHANNEL_SELECTED: {
+      return [];
+    }
     default:
       return state;
   }
 }
-
-export default messagesReducer;

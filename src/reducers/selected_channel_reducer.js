@@ -1,12 +1,12 @@
-import { SELECT_CHANNEL } from '../actions';
+import { CHANNEL_SELECTED } from '../actions';
 
-const selectedChannelReducer = (state=null, action) => {
+export default function(state = null, action) {
   switch(action.type) {
-    case SELECT_CHANNEL:
+    case CHANNEL_SELECTED: {
       return action.payload;
-    default:
-      return 'general';
+    }
+    default: {
+      return state;
+    }
   }
 }
-
-export default selectedChannelReducer;

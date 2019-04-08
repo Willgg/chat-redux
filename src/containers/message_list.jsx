@@ -14,7 +14,7 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
-    this.refresher = setInterval(this.fetchMessages, 500000);
+    this.refresher = setInterval(this.fetchMessages, 500);
   }
 
   componentDidUpdate() {
@@ -48,15 +48,15 @@ class MessageList extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    messages: state.messages,
+    selectedChannel: state.selectedChannel
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchMessages }, dispatch);
 }
 
-function mapReduxStateToProps(reduxState) {
-  return {
-    messages: reduxState.messages,
-    selectedChannel: reduxState.selectedChannel
-  };
-}
-
-export default connect(mapReduxStateToProps, mapDispatchToProps)(MessageList);
+export default connect(mapStateToProps, mapDispatchToProps)(MessageList);

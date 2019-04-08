@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-// internal imports
-import { selectChannel, fetchMessages } from '../actions'
+import { selectChannel, fetchMessages } from '../actions/index';
 
 class ChannelList extends Component {
-  // TODO refresh messages list
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedChannel !== this.props.selectedChannel) {
+      this.props.fetchMessages(nextProps.selectedChannel);
+    }
+  }
 
   handleClick = (channel) => {
     this.props.selectChannel(channel);
@@ -32,15 +34,15 @@ class ChannelList extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    channels: state.channels,
+    selectedChannel: state.selectedChannel
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectChannel, fetchMessages }, dispatch);
 }
 
-function mapReduxStateToProps(reduxState) {
-  return {
-    channels: reduxState.channels,
-    selectedChannel: reduxState.selectedChannel
-  };
-}
-
-export default connect(mapReduxStateToProps, mapDispatchToProps)(ChannelList);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);
